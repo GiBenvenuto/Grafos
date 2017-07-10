@@ -10,6 +10,7 @@
  */
 package Desenho;
 
+import Cores.EscalaCores;
 import Metodos.Grafo;
 import Metodos.Matriz;
 import java.awt.Color;
@@ -250,9 +251,24 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void AGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGMActionPerformed
-        // TODO add your handling code here:
         
-        this.g.AGM_Prim();
+        int maux[][] = this.g.AGM_Prim(0);
+        
+        EscalaCores ec = new EscalaCores();
+        for (int i = 0; i < maux.length; i++){
+            this.graph.
+        }
+ 
+//        int coresStep = 255 / nCores;
+//        RainbowScale rbS = new RainbowScale();
+//        //GrayScale gs = new GrayScale();
+//        for (int i = 0; i < cores.length; i++) {
+//            System.out.println("Vertice: " + i + " Cor: " + cores[i]);
+//            this.graph.getVertex().get(i).setColor(rbS.getColor(cores[i] * coresStep));
+//            //this.graph.getVertex().get(i).setColor(gs.getColor(cores[i] * coresStep));
+//        }
+//        this.view.cleanImage();
+//        this.view.repaint();
     }//GEN-LAST:event_AGMActionPerformed
 
     public class ViewPanel extends JPanel {
