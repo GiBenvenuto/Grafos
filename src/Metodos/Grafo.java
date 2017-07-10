@@ -156,7 +156,7 @@ public class Grafo {
     }
     //Algortimo de Prim
 
-    public void AGM_Prim(int vertice) {
+    public int[][] AGM_Prim(int vertice) {
         int valor;
         inicializaMatrizAGM();
         maux[vertice][1] = 0; //Distancia
@@ -179,6 +179,7 @@ public class Grafo {
                 break;
             }
         }
+        return maux;
 
     }
 
