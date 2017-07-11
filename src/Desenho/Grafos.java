@@ -30,7 +30,7 @@ public class Grafos {
 //            }
             this.vert.add(v);
         }
-        computeCircledPosition(150);
+        computeCircledPosition(200);
     }
 
     public void addVertex(Vertices v){

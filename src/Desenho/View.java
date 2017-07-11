@@ -61,8 +61,9 @@ public class View extends javax.swing.JFrame {
         salvarImagem_Menu = new javax.swing.JMenuItem();
         algoritmos_Menu = new javax.swing.JMenu();
         componentesConexas_Menu = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        coloracao = new javax.swing.JMenuItem();
         AGM = new javax.swing.JMenuItem();
+        caminhoMinimo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,13 +97,13 @@ public class View extends javax.swing.JFrame {
         });
         algoritmos_Menu.add(componentesConexas_Menu);
 
-        jMenuItem1.setText("Coloração");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        coloracao.setText("Coloração");
+        coloracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                coloracaoActionPerformed(evt);
             }
         });
-        algoritmos_Menu.add(jMenuItem1);
+        algoritmos_Menu.add(coloracao);
 
         AGM.setText("Árvore Geradora Mínima");
         AGM.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +112,14 @@ public class View extends javax.swing.JFrame {
             }
         });
         algoritmos_Menu.add(AGM);
+
+        caminhoMinimo.setText("Caminho Mínimo");
+        caminhoMinimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caminhoMinimoActionPerformed(evt);
+            }
+        });
+        algoritmos_Menu.add(caminhoMinimo);
 
         jMenuBar1.add(algoritmos_Menu);
 
@@ -135,7 +144,7 @@ public class View extends javax.swing.JFrame {
     private void carregarGrafo_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarGrafo_MenuActionPerformed
         int qtdvertices, est;
         boolean estrutura;
-        JFileChooser fc = new JFileChooser("C:\\Users\\Gi Benvenuto\\Desktop\\Desktop\\BCC\\5°SEMESTRE\\Grafos\\Trabalho Prático - 02");
+        JFileChooser fc = new JFileChooser("C:\\Users\\Gustavoo\\Documents\\Unesp\\3° ano\\1° semestre\\Grafos\\TP02");
         int result;
         result = fc.showOpenDialog(null);
         if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
@@ -232,7 +241,7 @@ public class View extends javax.swing.JFrame {
 //        this.view.repaint();
     }//GEN-LAST:event_componentesConexas_MenuActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void coloracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloracaoActionPerformed
         // TODO add your handling code here:
 //        Coloracao coloracao = new Coloracao();
 //        coloracao.execute(grafo);
@@ -249,7 +258,7 @@ public class View extends javax.swing.JFrame {
 //        }
 //        this.view.cleanImage();
 //        this.view.repaint();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_coloracaoActionPerformed
 
     private void AGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGMActionPerformed
         
@@ -272,6 +281,28 @@ public class View extends javax.swing.JFrame {
         this.view.cleanImage();
         this.view.repaint();
     }//GEN-LAST:event_AGMActionPerformed
+
+    private void caminhoMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caminhoMinimoActionPerformed
+        // TODO add your handling code here:
+        int maux[][] = this.g.caminhaMinimoDijkstra(0);
+        int ini, fim;
+        
+        for (Arestas a : this.graph.getAresta()){ //Enquanto não percorrer todas as arestas
+            for (int i = 0; i< maux.length; i++){
+            if (maux[i][2] != Integer.MAX_VALUE){
+                ini = a.getSource().getID(); //pega o número do vértice inicial
+                fim = a.getTarget().getID(); //pega o número do vértice final
+                if (ini == i && fim == maux[i][2] || ini == maux[i][2] && fim == i) //compara se faz parte da solução
+                    a.setSelected(true); //marca a selecionada
+            }
+            
+            }
+            
+        }
+       
+        this.view.cleanImage();
+        this.view.repaint();
+    }//GEN-LAST:event_caminhoMinimoActionPerformed
 
     public class ViewPanel extends JPanel {
 
@@ -436,10 +467,11 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JMenuItem AGM;
     private javax.swing.JMenu algoritmos_Menu;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JMenuItem caminhoMinimo;
     private javax.swing.JMenuItem carregarGrafo_Menu;
+    private javax.swing.JMenuItem coloracao;
     private javax.swing.JMenuItem componentesConexas_Menu;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenu opcoes_Menu;
     private javax.swing.JMenuItem salvarImagem_Menu;

@@ -48,6 +48,8 @@ public class Vertices {
         g2.setColor(Color.BLACK);
         g2.drawOval(((int) this.x) - this.getRay(), ((int) this.y)
                 - this.getRay(), this.getRay() * 2, this.getRay() * 2);
+        
+        //drawText(g2, new Point((int) this.x, (int) this.x), new Point((int) this.y, (int) this.y), String.valueOf(this.ID), 0);
 
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1.0f));
 
@@ -61,7 +63,11 @@ public class Vertices {
         Point pc = new Point(Math.round(deslocamento * -cos) + t.x, Math.round(deslocamento * -sen) + t.y);
 
         g2.setFont(new Font(("Verdana"), Font.BOLD, 14));
-        g2.setColor(java.awt.Color.BLACK);
+        if (this.color != Color.BLACK) {
+            g2.setColor(java.awt.Color.BLACK);
+        } else {
+            g2.setColor(java.awt.Color.WHITE);
+        }
         g2.drawString(text, pc.x, pc.y);
     }
 

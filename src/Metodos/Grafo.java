@@ -244,4 +244,27 @@ public class Grafo {
         }
     }
 
+    //Caminho Minimo
+    public int[][] caminhaMinimoDijkstra(int vertice){
+        int original = vertice;
+        inicializaMatrizAGM();
+        maux[vertice][1] = 0;//valor
+        
+        while(maux[vertice][0] == Integer.MAX_VALUE){
+            maux[vertice][0] = 1; //pertence ao caminho
+            
+            for(int j=0; j<qtdvertices; j++)
+                if(rep.verificaAdjacencia(vertice, j) != Integer.MAX_VALUE){
+                    if(maux[j][1] > rep.verificaAdjacencia(vertice, j)+maux[vertice][1]){
+                        maux[j][1] = rep.verificaAdjacencia(vertice, j)+maux[vertice][1];
+                        maux[j][2] = vertice; //pai
+                    }
+                }
+            
+            vertice = excluiMinimo();
+            if(vertice == Integer.MAX_VALUE)
+                break;
+        }
+        return maux;
+    }
 }
