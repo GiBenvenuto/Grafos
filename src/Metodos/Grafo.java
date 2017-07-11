@@ -179,12 +179,13 @@ public class Grafo {
                 break;
             }
         }
+        exibirAux();
         return maux;
 
     }
 
     //Busca em Largura
-    public void buscaLargura(int vert) {
+    public int[][] buscaLargura(int vert) {
         int u, j, i = 0;
         int max = Integer.MAX_VALUE;
         int num = qtdvertices;
@@ -219,6 +220,7 @@ public class Grafo {
             }//for adjacencias
             maux[u][0] = 2;
         }
+        return maux;
 
     }
 

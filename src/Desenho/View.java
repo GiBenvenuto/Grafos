@@ -146,6 +146,7 @@ public class View extends javax.swing.JFrame {
             in = new BufferedReader(new FileReader(filename));
                                 
             est = Integer.parseInt(in.readLine());//Se é dígrafo ou grafo
+            
             qtdvertices = Integer.parseInt(in.readLine());
 
             if (est == 1) {
@@ -171,14 +172,12 @@ public class View extends javax.swing.JFrame {
                     vS.setID(vIni);
                     Vertices vT = this.graph.getVertex().get(vFim);
                     vT.setID(vFim);
-                    this.g.addAdjacencia(vFim, vFim, valor); //estrutura de dados
+                    this.g.addAdjacencia(vIni, vFim, valor); //estrutura de dados
                     Arestas a = new Arestas(vS, vT, valor); //desenho
-                    //Exemplo de seleção de aresta
-                    if (vIni % 2 == 0){
-                      //  e.setSelected(true);                        
-                    }
+                 
                     
                     this.graph.addEdge(a);    //desenho
+                    this.g.ordenacaoTopologica();
 
                 }  //se tiver peso nas arestas, adicionar mais uma leitura de token
 
@@ -254,28 +253,23 @@ public class View extends javax.swing.JFrame {
 
     private void AGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGMActionPerformed
         
-        int i = 0;
         int maux[][] = this.g.AGM_Prim(0);
-        Arestas a;
+        int ini, fim;
         
-        while (!this.graph.getAresta().isEmpty())
-        this.graph.getAresta().remove(0);
-       
-        for (; i< maux.length; i++){
+        for (Arestas a : this.graph.getAresta()){ //Enquanto não percorrer todas as arestas
+            for (int i = 0; i< maux.length; i++){
             if (maux[i][2] != Integer.MAX_VALUE){
-            a = new Arestas(this.graph.getVertex().get(i), this.graph.getVertex().get(maux[i][2]), 0);
-            a.setSelected(true);
-            this.graph.addEdge(a);
+                ini = a.getSource().getID(); //pega o número do vértice inicial
+                fim = a.getTarget().getID(); //pega o número do vértice final
+                if (ini == i && fim == maux[i][2] || ini == maux[i][2] && fim == i) //compara se faz parte da solução
+                    a.setSelected(true); //marca a selecionada
+            }
             
             }
             
         }
        
-           
- 
         this.view.cleanImage();
-        this.view.setGraph(graph);
-
         this.view.repaint();
     }//GEN-LAST:event_AGMActionPerformed
 

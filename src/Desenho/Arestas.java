@@ -44,6 +44,7 @@ public class Arestas {
 
         if (selected) {
             g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1.0f));
+            g2.setColor(java.awt.Color.BLACK);
             g2.setStroke(new java.awt.BasicStroke(3.0f));
         } else {
             g2.setStroke(new java.awt.BasicStroke(1.0f));
@@ -52,13 +53,15 @@ public class Arestas {
             } else {//se os vertices nao estao selecionados
                 g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.2f));
             }
-        }
+        
 
         this.color = new java.awt.Color((this.source.getColor().getRed() + this.target.getColor().getRed()) / 2,
                 (this.source.getColor().getGreen() + this.target.getColor().getGreen()) / 2,
                 (this.source.getColor().getBlue() + this.target.getColor().getBlue()) / 2);
 
         g2.setColor(this.color);
+        
+        }
 
         g2.drawLine(((int) this.source.getX()), ((int) this.source.getY()),
                 ((int) this.target.getX()), ((int) this.target.getY()));

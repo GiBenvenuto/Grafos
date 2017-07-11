@@ -6,6 +6,9 @@
 package Desenho;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 /**
  *
@@ -35,6 +38,8 @@ public class Vertices {
             g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.2f));
             g2.setStroke(new java.awt.BasicStroke(1.5f));
         }
+        
+        
 
         g2.setColor(this.color);        
         g2.fillOval(((int) this.x) - this.getRay(), ((int) this.y)
@@ -46,6 +51,18 @@ public class Vertices {
 
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1.0f));
 
+    }
+    
+      private void drawText(Graphics2D g2, Point s, Point t, String text, int deslocamento) {
+        float r = (float) Math.sqrt(Math.pow(s.x - t.x, 2) + Math.pow(s.y - t.y, 2));
+        float cos = (t.x - s.x) / r;
+        float sen = (t.y - s.y) / r;
+
+        Point pc = new Point(Math.round(deslocamento * -cos) + t.x, Math.round(deslocamento * -sen) + t.y);
+
+        g2.setFont(new Font(("Verdana"), Font.BOLD, 14));
+        g2.setColor(java.awt.Color.BLACK);
+        g2.drawString(text, pc.x, pc.y);
     }
 
     public float getX() {
