@@ -61,6 +61,10 @@ public class Grafos {
     public ArrayList<Vertices> getVertex() {
         return this.vert;
     }
+    
+    public ArrayList<Arestas> getAresta(){
+        return this.arest;
+    }
 
     public void draw(java.awt.Graphics2D g2) {
        //Draw each edges of the graph

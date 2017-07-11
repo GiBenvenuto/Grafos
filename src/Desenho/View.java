@@ -135,7 +135,7 @@ public class View extends javax.swing.JFrame {
     private void carregarGrafo_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarGrafo_MenuActionPerformed
         int qtdvertices, est;
         boolean estrutura;
-        JFileChooser fc = new JFileChooser("C:\\Users\\Gustavoo\\Documents\\Unesp\\3° ano\\1° semestre\\Grafos\\TP02");
+        JFileChooser fc = new JFileChooser("C:\\Users\\Gi Benvenuto\\Desktop\\Desktop\\BCC\\5°SEMESTRE\\Grafos\\Trabalho Prático - 02");
         int result;
         result = fc.showOpenDialog(null);
         if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
@@ -168,7 +168,9 @@ public class View extends javax.swing.JFrame {
                     int valor = Integer.parseInt(t1.nextToken().trim());//Valor
                     
                     Vertices vS = this.graph.getVertex().get(vIni);
+                    vS.setID(vIni);
                     Vertices vT = this.graph.getVertex().get(vFim);
+                    vT.setID(vFim);
                     this.g.addAdjacencia(vFim, vFim, valor); //estrutura de dados
                     Arestas a = new Arestas(vS, vT, valor); //desenho
                     //Exemplo de seleção de aresta
@@ -252,23 +254,29 @@ public class View extends javax.swing.JFrame {
 
     private void AGMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGMActionPerformed
         
+        int i = 0;
         int maux[][] = this.g.AGM_Prim(0);
+        Arestas a;
         
-        EscalaCores ec = new EscalaCores();
-        for (int i = 0; i < maux.length; i++){
-            this.graph.
+        while (!this.graph.getAresta().isEmpty())
+        this.graph.getAresta().remove(0);
+       
+        for (; i< maux.length; i++){
+            if (maux[i][2] != Integer.MAX_VALUE){
+            a = new Arestas(this.graph.getVertex().get(i), this.graph.getVertex().get(maux[i][2]), 0);
+            a.setSelected(true);
+            this.graph.addEdge(a);
+            
+            }
+            
         }
+       
+           
  
-//        int coresStep = 255 / nCores;
-//        RainbowScale rbS = new RainbowScale();
-//        //GrayScale gs = new GrayScale();
-//        for (int i = 0; i < cores.length; i++) {
-//            System.out.println("Vertice: " + i + " Cor: " + cores[i]);
-//            this.graph.getVertex().get(i).setColor(rbS.getColor(cores[i] * coresStep));
-//            //this.graph.getVertex().get(i).setColor(gs.getColor(cores[i] * coresStep));
-//        }
-//        this.view.cleanImage();
-//        this.view.repaint();
+        this.view.cleanImage();
+        this.view.setGraph(graph);
+
+        this.view.repaint();
     }//GEN-LAST:event_AGMActionPerformed
 
     public class ViewPanel extends JPanel {

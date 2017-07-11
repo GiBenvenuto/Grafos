@@ -29,6 +29,16 @@ public class Arestas {
         this.valor = valor;
     }
 
+    public Vertices getSource() {
+        return source;
+    }
+
+    public Vertices getTarget() {
+        return target;
+    }
+
+    
+    
     public void draw(java.awt.Graphics2D g2) {
         //Combines the color of the two vertex to paint the edge
 
