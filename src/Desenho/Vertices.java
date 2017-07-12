@@ -49,26 +49,20 @@ public class Vertices {
         g2.drawOval(((int) this.x) - this.getRay(), ((int) this.y)
                 - this.getRay(), this.getRay() * 2, this.getRay() * 2);
         
-        //drawText(g2, new Point((int) this.x, (int) this.x), new Point((int) this.y, (int) this.y), String.valueOf(this.ID), 0);
 
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1.0f));
 
     }
     
       private void drawText(Graphics2D g2, Point s, Point t, String text, int deslocamento) {
-        float r = (float) Math.sqrt(Math.pow(s.x - t.x, 2) + Math.pow(s.y - t.y, 2));
-        float cos = (t.x - s.x) / r;
-        float sen = (t.y - s.y) / r;
-
-        Point pc = new Point(Math.round(deslocamento * -cos) + t.x, Math.round(deslocamento * -sen) + t.y);
-
+       
         g2.setFont(new Font(("Verdana"), Font.BOLD, 14));
         if (this.color != Color.BLACK) {
             g2.setColor(java.awt.Color.BLACK);
         } else {
             g2.setColor(java.awt.Color.WHITE);
         }
-        g2.drawString(text, pc.x, pc.y);
+        g2.drawString(text, (int)x - 4, (int)y - 8);
     }
 
     public float getX() {
